@@ -1,10 +1,12 @@
 package main;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import model.AlbumDeMusica;
 import model.Brinquedo;
+import model.Cliente;
 import model.Filme;
 import model.Jogo;
 import model.Livro;
@@ -22,8 +24,12 @@ public class Main {
 		Brinquedo brinquedo = new Brinquedo("Brinquedo 1", "brinquedo1", new BigDecimal("1.00"), "Tipo");
 		
 		Filme filme = new Filme("Filme 1", "filme1", new BigDecimal("5.00"), "Estudio", List.of("Diretor"), List.of("Genero"), List.of("Produtor"));
+		Filme filmeAdulto = new Filme("Filme Adulto", "filmeAdulto", new BigDecimal("7.00"), "Estudio", List.of("Diretor"), List.of("Genero","Adulto"), List.of("Produtor"));
+		filmeAdulto.setPublicoAdulto(Boolean.TRUE);
 		
 		Jogo jogo = new Jogo("Jogo 1", "jogo1", new BigDecimal("129.00"), "Distribuidora", "Genero", "Estudio");
+		Jogo jogoAdulto = new Jogo("Jogo Adulto", "jogoAdulto", new BigDecimal("175.00"), "Distribuidora", "Adulto", "Estudio");
+		jogoAdulto.setPublicoAdulto(Boolean.TRUE);
 		
 		Livro livro1 = new Livro("Livro 1", "livro1", new BigDecimal("1.00"), "Genero", "Escritor", "Editora");
 		Livro livro2 = new Livro("Livro 2", "livro2", new BigDecimal("2.00"), "Genero", "Escritor", "Editora");
@@ -39,6 +45,8 @@ public class Main {
 		estoque.adiciona(livro1);
 		estoque.adiciona(livro2);
 		estoque.adiciona(livro3);
+		estoque.adiciona(filmeAdulto);
+		estoque.adiciona(jogoAdulto);
 		try {
 			estoque.adiciona(livro3);
 		} catch(Exception e) {
@@ -50,15 +58,21 @@ public class Main {
 		
 		Livraria livraria = new Livraria(caixa, estoque);
 		
+		Cliente clienteLeonardo = new Cliente("Leonardo", "MG-123", "123.456.789-00", LocalDate.of(1983, 11, 15));
+		Cliente clienteHeitor = new Cliente("Heitor", "SP-456", "111.222.333-44", LocalDate.of(2019, 7, 29));
+		
 		System.out.println();
 		livraria.imprimeEstadoAtual();
 		
 		System.out.println();
-		livraria.compra(List.of(album, livro2));
+		livraria.compra(List.of(album, livro2, filmeAdulto), clienteLeonardo);
 		System.out.println();
-		livraria.compra(List.of(livro3));
+		livraria.compra(List.of(livro3), clienteLeonardo);
 		System.out.println();
-		livraria.compra(List.of(livro3));
+		livraria.compra(List.of(livro3), clienteLeonardo);
+		
+		System.out.println();
+		livraria.compra(List.of(brinquedo, jogoAdulto), clienteHeitor);
 		
 		System.out.println();
 		livraria.imprimeEstadoAtual();

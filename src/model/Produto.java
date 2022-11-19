@@ -6,12 +6,14 @@ public abstract class Produto {
 	private String nome;
 	private String id;
 	private BigDecimal preco;
+	private Boolean publicoAdulto;
 	
 	public Produto(String nome, String id, BigDecimal preco) {
 		super();
 		this.nome = nome;
 		this.id = id;
 		this.preco = preco;
+		this.publicoAdulto = Boolean.FALSE;
 	}
 	
 	public String getNome() {
@@ -36,5 +38,13 @@ public abstract class Produto {
 	
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
+	}
+
+	public Boolean getPublicoAdulto() {
+		return publicoAdulto;
+	}
+
+	public void setPublicoAdulto(Boolean publicoAdulto) {
+		this.publicoAdulto = publicoAdulto;
 	}
 }
