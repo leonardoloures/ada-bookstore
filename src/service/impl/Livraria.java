@@ -32,13 +32,15 @@ public class Livraria {
 		 	.collect(Collectors.toList()));
 	}
 	
-	public void compra(Produto produto) {
-		try {
-			System.out.println("Comprando produto " + produto.getId());
-			this.estoque.remove(produto.getId());
-			this.caixa.adiciona(produto.getPreco());
-		} catch (Exception e) {
-			System.out.println("Erro na compra do produto " + produto.getId() + ": " + e.getMessage());
-		}
+	public void compra(List<Produto> produtos) {
+		produtos.forEach(produto -> {
+			try {
+				System.out.println("Comprando produto " + produto.getId());
+				this.estoque.remove(produto.getId());
+				this.caixa.adiciona(produto.getPreco());
+			} catch (Exception e) {
+				System.out.println("Erro na compra do produto " + produto.getId() + ": " + e.getMessage());
+			}
+		});
 	}
 }

@@ -54,8 +54,11 @@ public class Main {
 		livraria.imprimeEstadoAtual();
 		
 		System.out.println();
-		livraria.compra(album);
-		livraria.compra(livro2);
+		livraria.compra(List.of(album, livro2));
+		System.out.println();
+		livraria.compra(List.of(livro3));
+		System.out.println();
+		livraria.compra(List.of(livro3));
 		
 		System.out.println();
 		livraria.imprimeEstadoAtual();
