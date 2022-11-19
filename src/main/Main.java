@@ -28,7 +28,8 @@ public class Main {
 		Livro livro1 = new Livro("Livro 1", "livro1", new BigDecimal("1.00"), "Genero", "Escritor", "Editora");
 		Livro livro2 = new Livro("Livro 2", "livro2", new BigDecimal("2.00"), "Genero", "Escritor", "Editora");
 		Livro livro3 = new Livro("Livro 3", "livro3", new BigDecimal("3.00"), "Genero", "Escritor", "Editora");
-		
+		Livro livro4 = new Livro("Livro 3", "livro4", new BigDecimal("4.00"), "Genero", "Escritor", "Editora");
+				
 		Caixa caixa = new CaixaImpl();
 		Estoque estoque = new EstoqueImpl();
 		estoque.adiciona(album);
@@ -38,6 +39,14 @@ public class Main {
 		estoque.adiciona(livro1);
 		estoque.adiciona(livro2);
 		estoque.adiciona(livro3);
+		try {
+			estoque.adiciona(livro3);
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		estoque.adiciona(livro4);
+		livro4.setNome("Livro 4");
+		estoque.altera(livro4);
 		
 		Livraria livraria = new Livraria(caixa, estoque);
 		
