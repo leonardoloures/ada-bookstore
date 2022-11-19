@@ -1,11 +1,13 @@
 package service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import model.Cliente;
 import model.Produto;
 import service.Caixa;
+import service.Carrinho;
 import service.Estoque;
 import service.ValidadorDeCompra;
 
@@ -36,12 +38,14 @@ public class Livraria {
 	
 	public void compra(List<Produto> produtos, Cliente cliente) {
 		ValidadorDeCompra validador = new ValidadorDeCompraImpl();
+		Carrinho carrinho = new CarrinhoImpl();
+		
 		produtos.forEach(produto -> {
 			try {
 				System.out.println(String.format("Cliente %s comprando o produto %s", cliente.getNome(), produto.getId()));
 				if (validador.podeComprar(cliente, produto)) {
 					this.estoque.remove(produto.getId());
-					this.caixa.adiciona(produto.getPreco());
+					carrinho.adicionaProduto(produto);
 				} else {
 					throw new Exception("O cliente " + cliente.getNome() + " nao pode comprar o produto " + produto.getId());
 				}
@@ -49,5 +53,8 @@ public class Livraria {
 				System.out.println("Erro na compra do produto " + produto.getId() + ": " + e.getMessage());
 			}
 		});
+		
+		BigDecimal total = carrinho.calculaTotal();
+		this.caixa.adiciona(total);
 	}
 }

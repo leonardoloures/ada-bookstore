@@ -31,10 +31,10 @@ public class Main {
 		Jogo jogoAdulto = new Jogo("Jogo Adulto", "jogoAdulto", new BigDecimal("175.00"), "Distribuidora", "Adulto", "Estudio");
 		jogoAdulto.setPublicoAdulto(Boolean.TRUE);
 		
-		Livro livro1 = new Livro("Livro 1", "livro1", new BigDecimal("1.00"), "Genero", "Escritor", "Editora");
-		Livro livro2 = new Livro("Livro 2", "livro2", new BigDecimal("2.00"), "Genero", "Escritor", "Editora");
-		Livro livro3 = new Livro("Livro 3", "livro3", new BigDecimal("3.00"), "Genero", "Escritor", "Editora");
-		Livro livro4 = new Livro("Livro 3", "livro4", new BigDecimal("4.00"), "Genero", "Escritor", "Editora");
+		Livro livro1 = new Livro("Livro 1", "livro1", new BigDecimal("110.00"), "Genero", "Escritor", "Editora");
+		Livro livro2 = new Livro("Livro 2", "livro2", new BigDecimal("120.00"), "Genero", "Escritor", "Editora");
+		Livro livro3 = new Livro("Livro 3", "livro3", new BigDecimal("130.00"), "Genero", "Escritor", "Editora");
+		Livro livro4 = new Livro("Livro 3", "livro4", new BigDecimal("140.00"), "Genero", "Escritor", "Editora");
 				
 		Caixa caixa = new CaixaImpl();
 		Estoque estoque = new EstoqueImpl();
@@ -65,7 +65,7 @@ public class Main {
 		livraria.imprimeEstadoAtual();
 		
 		System.out.println();
-		livraria.compra(List.of(album, livro2, filmeAdulto), clienteLeonardo);
+		livraria.compra(List.of(album, livro2, filmeAdulto, livro4), clienteLeonardo);
 		System.out.println();
 		livraria.compra(List.of(livro3), clienteLeonardo);
 		System.out.println();
